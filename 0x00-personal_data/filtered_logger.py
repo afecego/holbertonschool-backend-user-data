@@ -8,8 +8,7 @@ PII_FIELDS = ('name', 'email', 'phone', 'sn', 'password')
 
 
 class RedactingFormatter(logging.Formatter):
-    """ Redacting Formatter class
-        """
+    """ Redacting Formatter class"""
 
     REDACTION = "***"
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
@@ -18,14 +17,13 @@ class RedactingFormatter(logging.Formatter):
     def __init__(self, fields):
         """function constructor"""
         super(RedactingFormatter, self).__init__(self.FORMAT)
-        self.fields = fields
-
+        self.fields = fields1
 
     def format(self, record: logging.LogRecord) -> str:
         """method to filter values in incoming record using filter_datum"""
         resum = filter_datum(self.fields, self.REDACTION,
-                            super(RedactingFormatter, self).format(record),
-                            self.SEPARATOR)
+                             super(RedactingFormatter, self).format(record),
+                             self.SEPARATOR)
         return resum
 
 
