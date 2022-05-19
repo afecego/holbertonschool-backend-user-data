@@ -17,7 +17,7 @@ class RedactingFormatter(logging.Formatter):
     def __init__(self, fields):
         """function constructor"""
         super(RedactingFormatter, self).__init__(self.FORMAT)
-        self.fields = fields1
+        self.fields = fields
 
     def format(self, record: logging.LogRecord) -> str:
         """method to filter values in incoming record using filter_datum"""
