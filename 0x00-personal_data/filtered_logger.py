@@ -50,6 +50,7 @@ def get_logger() -> logging.Logger:
     logger.addHandler(ch)
     return logger
 
+
 def get_db() -> mysql.connector.connection.MySQLConnection:
     """returns a connector to the database"""
     username = environ.get('PERSONAL_DATA_DB_USERNAME', 'root')
@@ -57,9 +58,9 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     host = environ.get('PERSONAL_DATA_DB_HOST', 'localhost')
     database = environ.get('PERSONAL_DATA_DB_NAME')
     cnx = mysql.connector.connect(
-        host = host,
-        user = username,
-        password = password,
-        database = database
+        host=host,
+        user=username,
+        password=password,
+        database=database
     )
     return cnx
