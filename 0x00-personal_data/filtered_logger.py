@@ -6,7 +6,8 @@ import re
 def filter_datum(fields, redaction, message, separator) -> str:
     """function should use a regex to replace occurrences of certain field
     values"""
+    new_mess = message
     for i in fields:
-        message = re.sub(i + "=.*?" + separator, i + "=" + redaction +
-                         separator, message)
-    return message
+        new_mess = re.sub(i + "=.*?" + separator, i + "=" + redaction +
+                          separator, new_mess)
+    return new_mess
