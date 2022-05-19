@@ -21,13 +21,12 @@ class RedactingFormatter(logging.Formatter):
 
     def format(self, record: logging.LogRecord) -> str:
         """method to filter values in incoming record using filter_datum"""
-        resum = filter_datum(self.fields, self.REDACTION,
-                             super(RedactingFormatter, self).format(record),
-                             self.SEPARATOR)
-        return resum
+        return filter_datum(self.fields, self.REDACTION,
+                            super(RedactingFormatter, self).format(record),
+                            self.SEPARATOR)
 
 
-def filter_datum(fields, redaction, message, separator):
+def filter_datum(fields, redaction, message, separator) -> str:
     """function should use a regex to replace occurrences of certain field
     values"""
     for i in fields:
