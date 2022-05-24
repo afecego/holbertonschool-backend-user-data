@@ -43,7 +43,7 @@ def not_found(error) -> str:
 @app.before_request
 def before_request() -> str:
     """piece to filter each request"""
-    if auth != None:
+    if auth is not None:
         if auth.require_auth(request.path, ['/api/v1/status/',
                              '/api/v1/unauthorized/', '/api/v1/forbidden/']):
             if auth.authorization_header(request) is None:
