@@ -3,6 +3,8 @@
 from api.v1.auth.auth import Auth
 import uuid
 
+from models.user import User
+
 
 class SessionAuth(Auth):
     """inherits from Auth"""
@@ -25,3 +27,10 @@ class SessionAuth(Auth):
         if type(session_id) is not str:
             return None
         return self.user_id_by_session_id.get(session_id)
+
+    def current_user(self, request=None):
+        """ returns a User instance based on a cookie value"""
+        cookie = self.session_cookie(request)
+        data = self.user_id_for_session_id(cookie)
+        user = User.get(data)
+        return user
