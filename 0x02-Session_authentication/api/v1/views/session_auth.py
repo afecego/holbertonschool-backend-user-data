@@ -24,9 +24,10 @@ def auth_session() -> str:
         return jsonify({"error": "no user found for this email"}), 400
     if not data:
         return jsonify({"error": "no user found for this email"}), 400
+    resum = data[0]
     if not data.is_valid_password(in_password):
         return jsonify({"error": "wrong password"}), 401
-    resum = data[0]
+
     from api.v1.app import auth
     cookie = os.getenv('SESSION_NAME')
     session = auth.create_session(resum.id)
