@@ -15,6 +15,8 @@ class SessionExpAuth(SessionAuth):
 
     def create_session(self, user_id=None):
         """create session"""
+        if type(user_id) is not str:
+            return None
         try:
             session = super().create_session(user_id)
         except Exception:
@@ -30,6 +32,8 @@ class SessionExpAuth(SessionAuth):
     def user_id_for_session_id(self, session_id=None):
         """return user_id from the session dictionary"""
         if session_id is None:
+            return None
+        if type(session_id) is not str:
             return None
         diction = self.user_id_by_session_id.get(session_id)
         if diction is None:
