@@ -9,8 +9,9 @@ class SessionExpAuth(SessionAuth):
     """inherits from SessionAuth"""
     def __init__(self):
         """Overload method"""
-        self.session_duration = int(os.getenv('SESSION_DURATION'))
-        if not self.session_duration or type(self.session_duration) is not str:
+        try:
+            self.session_duration = int(os.getenv('SESSION_DURATION'))
+        except Exception:
             self.session_duration = 0
 
     def create_session(self, user_id=None):
@@ -36,7 +37,7 @@ class SessionExpAuth(SessionAuth):
         if type(session_id) is not str:
             return None
         diction = self.user_id_by_session_id.get(session_id)
-        if diction is None:
+        if not diction or diction is None:
             return None
         if self.session_duration <= 0:
             return diction.get('user_id')
