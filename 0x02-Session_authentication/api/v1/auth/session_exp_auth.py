@@ -16,8 +16,6 @@ class SessionExpAuth(SessionAuth):
 
     def create_session(self, user_id=None):
         """create session"""
-        if type(user_id) is not str:
-            return None
         try:
             session = super().create_session(user_id)
         except Exception:
@@ -41,7 +39,7 @@ class SessionExpAuth(SessionAuth):
             return None
         if self.session_duration <= 0:
             return diction.get('user_id')
-        if 'created_at' is not diction:
+        if 'created_at' not in diction:
             return None
 
         time = diction.get('created_at')
