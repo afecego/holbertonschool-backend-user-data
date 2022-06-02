@@ -45,4 +45,4 @@ class DB:
             raise InvalidRequestError
         if filt is None:
             raise NoResultFound
-        return filt
+        return filt:
