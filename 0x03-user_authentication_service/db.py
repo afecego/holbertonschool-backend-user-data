@@ -48,7 +48,7 @@ class DB:
         method’s input arguments"""
         try:
             filt = self._session.query(User).filter_by(**kwargs).first()
-        except Exception:
+        except InvalidRequestError:
             raise InvalidRequestError
         if filt is None:
             raise NoResultFound
