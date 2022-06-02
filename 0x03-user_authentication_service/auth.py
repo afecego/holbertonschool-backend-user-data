@@ -3,6 +3,7 @@
 import bcrypt
 from user import User
 from sqlalchemy.orm.exc import NoResultFound
+from db import DB
 
 
 def _hash_password(password: str) -> bytes:
@@ -11,9 +12,6 @@ def _hash_password(password: str) -> bytes:
     bytePwd = password.encode('utf-8')
     hashed = bcrypt.hashpw(bytePwd, salt)
     return hashed
-
-
-from db import DB
 
 
 class Auth:
