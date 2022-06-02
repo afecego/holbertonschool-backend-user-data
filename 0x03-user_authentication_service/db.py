@@ -34,9 +34,9 @@ class DB:
 
     def add_user(self, email: str, hashed_password: str) -> User:
         """returns a User object"""
-        if email is None or hashed_password is None:
+        if email is None or type(email) is not str:
             return None
-        if type(email) is not str or type(hashed_password) is not str:
+        if hashed_password is None or type(hashed_password) is not str:
             return None
         add_us = User(email=email, hashed_password=hashed_password)
         self._session.add(add_us)
