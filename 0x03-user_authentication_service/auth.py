@@ -32,3 +32,12 @@ class Auth:
             hash_pass = _hash_password(password)
             user = self._db.add_user(email, hash_pass)
             return user
+
+    def valid_login(self, email: str, password: str) -> bool:
+        """Validation of credentials"""
+        try:
+            cred = self._db.find_user_by(email=email)
+            return bcrypt.checkpw(password.encode('utf-8'),
+                                  cred.hashed_password)
+        except ValueError:
+            return False
