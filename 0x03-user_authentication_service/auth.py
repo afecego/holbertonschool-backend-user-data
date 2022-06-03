@@ -19,15 +19,15 @@ class Auth:
     """
 
     def __init__(self):
-        """method initialize"""
+        """method initial"""
         self._db = DB()
 
     def register_user(self, email: str, password: str) -> User:
-        """ake mandatory email and password string arguments and return a
-        User object."""
+        """Make mandatory email and password str arguments
+        and return a User object."""
         try:
             self._db.find_user_by(email=email)
-            raise ValueError(f'User {email} already exists')
+            raise ValueError(f'User {email} already exist')
         except NoResultFound:
             hash_pass = _hash_password(password)
             user = self._db.add_user(email, hash_pass)
