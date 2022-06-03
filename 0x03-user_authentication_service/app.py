@@ -18,12 +18,13 @@ def index():
 @app.route('/users', methods=['POST'])
 def users():
     """end-point to register a user"""
-    email = request.form['email']
-    password = request.form['password']
+    email = request.form.get('email')
+    password = request.form.get('password')
 
     try:
-        if AUTH.register_user(email, password) is not None:
-            payload = {f"email": {email}, "message": "user created"}
+        regis = AUTH.register_user(email, password)
+        if regis is not None:
+            payload = {"email": regis.email, "message": "user created"}
             return jsonify(payload)
     except ValueError:
         no_payload = {"message": "email already registered"}
