@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """set up a basic Flask app"""
-from re import A
 from flask import Flask, jsonify, request
 from auth import Auth
 
