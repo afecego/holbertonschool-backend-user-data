@@ -51,7 +51,7 @@ def logout():
     """function to respond to the DELETE /sessions route."""
     session = request.cookies['session_id']
     user = AUTH.get_user_from_session_id(session)
-    if user is None or session in None:
+    if session is None or user in None:
         abort(403)
     else:
         AUTH.destroy_session(user.id)
