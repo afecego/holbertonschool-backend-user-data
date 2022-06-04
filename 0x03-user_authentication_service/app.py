@@ -69,15 +69,13 @@ def profile():
         return jsonify({"email": user.email}), 200
 
 
-@app.route('/reset_password', methods=['GET'])
+@app.route('/reset_password', methods=['POST'])
 def get_reset_password_token():
     """respond to the POST /reset_password route."""
     get_email = request.form.get("email")
     validate = AUTH.create_session(get_email)
-
     if not validate:
         abort(403)
-
     token = AUTH.get_reset_password_token(get_email)
     payoled = {"email": get_email, "reset_token": token}
     return jsonify(payoled)
