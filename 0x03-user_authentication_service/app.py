@@ -63,7 +63,7 @@ def profile():
     user_cookie = request.cookies.get("session_id", None)
     user = AUTH.get_user_from_session_id(user_cookie)
     if user_cookie is None:
-        abort(200)
+        abort(403)
     if user is None:
         abort(403)
     else:
