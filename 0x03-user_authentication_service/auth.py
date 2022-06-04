@@ -77,7 +77,7 @@ class Auth:
         if user_id is None:
             return None
         try:
-            found = self._db.find_user_by(user_id=user_id)
+            found = self._db.find_user_by(id=user_id)
             self._db.update_user(found.id, session_id=None)
         except NoResultFound:
             return None
