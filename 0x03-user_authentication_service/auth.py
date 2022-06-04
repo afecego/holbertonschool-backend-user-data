@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """define a _hash_password method"""
+from typing import Union
 import uuid
 import bcrypt
 from user import User
@@ -60,3 +61,10 @@ class Auth:
         session_id = _generate_uuid()
         self._db.update_user(us.id, session_id=session_id)
         return session_id
+
+    def get_user_from_session_id(self, session_id: str) -> Union[User, None]:
+        """returns the corresponding User or None"""
+        if not session_id or session_id is None:
+            return None
+        else:
+            return self._db.find_user_by(session_id=session_id)
