@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """set up a basic Flask app"""
+from operator import ge
 from flask import Flask, jsonify, request, abort, redirect
 from auth import Auth
 
@@ -72,7 +73,8 @@ def profile():
 def get_reset_password_token():
     """respond to the POST /reset_password route."""
     get_email = request.form.get("email")
-    if not AUTH.create_session(get_email):
+    validate = AUTH.create_session(get_email)
+    if not validate:
         abort(403)
     token = AUTH.get_reset_password_token(get_email)
     payoled = {"email": get_email, "reset_token": token}
