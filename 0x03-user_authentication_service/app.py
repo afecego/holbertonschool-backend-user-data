@@ -72,7 +72,7 @@ def profile():
 def get_reset_password_token():
     """respond to the POST /reset_password route."""
     email = request.form['email']
-    if not AUTH._db.create_session(email):
+    if not AUTH.create_session(email):
         abort(403)
     token = AUTH.get_reset_password_token(email)
     payoled = {"email": email, "reset_token": token}
